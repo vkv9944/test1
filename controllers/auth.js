@@ -34,7 +34,7 @@ db.query('SELECT email from users WHERE email = ?',[email],async (error,results)
         return res.render('register',{
             message:'this email already exist'
            });
-    }  else if( password != passwordConfirm){
+    }  else if( password !== passwordConfirm){
         return res.render('register',{
             message:'password not matched'
            });
