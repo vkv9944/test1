@@ -63,3 +63,46 @@ db.query('SELECT email from users WHERE email = ?',[email],async (error,results)
 
   //  res.send("form submitted");
 }
+
+
+
+exports.login = async (req, res) => {
+
+    try {
+    const {email, password}=req.body;
+    
+    if(!email || !password){
+        
+        return res.render('login',{
+            message:'please provide valid email and password'
+        })
+    }
+
+    db.query('SELECT *FROM users WHERE email=?',[email], async(error,results)=>{
+        console.log(results);
+        if(!results || !(await bcrypt.compare(password,results[0].password))){
+          
+         res.status(401).render('login',{
+             message:'Email or password is incorrect'
+         })
+        }else{
+            //res.send("form submitted");
+            res.render('user');
+
+
+        }
+     })
+
+
+    
+
+
+      
+    } catch (error) {
+        console.log(error);
+        
+    }
+    
+        
+    }
+

@@ -58,6 +58,6 @@ app.use('/',require('./routes/pages'));
 app.use('/auth',require('./routes/auth'));
 
 
-app.listen(5002,()=>{
-    console.log("server started on 5002");
+app.listen(5005,()=>{
+    console.log("server started on 5005");
 })
